@@ -1,0 +1,22 @@
+{
+    "Bread": {
+        "product_name": "Bread",
+        "category": "Food",
+        "price": 2.5,
+        "stock": 3,
+        "expiry_date": "2024-06-05"
+    },
+    "Milk": {
+        "product_name": "Milk",
+        "category": "Food",
+        "price": 1.8,
+        "stock": 2,
+        "expiry_date": "2024-06-03"
+    },
+    "NewItem": {
+        "type": "Food",
+        "price": 3,
+        "stock": 5,
+        "expiry_date": "2024-07-01"
+    }
+}

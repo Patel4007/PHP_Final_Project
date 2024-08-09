@@ -1,0 +1,25 @@
+{
+    "products": [
+      {"product_id": 1, "product_name": "Apple", "category": "Fruit", "price": 0.5, "stock": 100},
+      {"product_id": 2, "product_name": "Banana", "category": "Fruit", "price": 0.3, "stock": 150},
+      {"product_id": 3, "product_name": "Orange", "category": "Fruit", "price": 0.6, "stock": 120},
+      {"product_id": 4, "product_name": "Tomato", "category": "Vegetable", "price": 0.8, "stock": 80},
+      {"product_id": 5, "product_name": "Potato", "category": "Vegetable", "price": 0.4, "stock": 200},
+      {"product_id": 6, "product_name": "Carrot", "category": "Vegetable", "price": 0.5, "stock": 150},
+      {"product_id": 7, "product_name": "Milk", "category": "Dairy", "price": 1.5, "stock": 50},
+      {"product_id": 8, "product_name": "Cheese", "category": "Dairy", "price": 2.5, "stock": 30},
+      {"product_id": 9, "product_name": "Yogurt", "category": "Dairy", "price": 1.0, "stock": 60},
+      {"product_id": 10, "product_name": "Chicken", "category": "Meat", "price": 5.0, "stock": 40},
+      {"product_id": 11, "product_name": "Beef", "category": "Meat", "price": 7.0, "stock": 30},
+      {"product_id": 12, "product_name": "Pork", "category": "Meat", "price": 6.0, "stock": 35},
+      {"product_id": 13, "product_name": "Salmon", "category": "Seafood", "price": 10.0, "stock": 25},
+      {"product_id": 14, "product_name": "Tuna", "category": "Seafood", "price": 8.0, "stock": 20},
+      {"product_id": 15, "product_name": "Shrimp", "category": "Seafood", "price": 12.0, "stock": 15},
+      {"product_id": 16, "product_name": "Bread", "category": "Bakery", "price": 1.0, "stock": 100},
+      {"product_id": 17, "product_name": "Croissant", "category": "Bakery", "price": 1.5, "stock": 70},
+      {"product_id": 18, "product_name": "Bagel", "category": "Bakery", "price": 1.2, "stock": 80},
+      {"product_id": 19, "product_name": "Rice", "category": "Grain", "price": 2.0, "stock": 200},
+      {"product_id": 20, "product_name": "Pasta", "category": "Grain", "price": 1.8, "stock": 150}
+    ]
+  }
+  

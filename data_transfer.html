@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload Form</title>
+    <style>
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        .note {
+            margin-top: 10px;
+            color: #555;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        .total-size {
+            margin-top: 10px;
+            color: #555;
+            font-size: 0.9em;
+            text-align: center;
+            display: none;
+        }
+        .file-list {
+            margin-top: 20px;
+        }
+        .file-list div {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            background-color: #f9f9f9;
+        }
+        .remove-btn, .back-btn {
+            background-color: #ff5c5c;
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        .remove-btn:hover, .back-btn:hover {
+            background-color: #ff1c1c;
+        }
+        .back-btn {
+            display: block;
+            margin: 20px auto 0;
+            background-color: #4CAF50;
+        }
+        .back-btn:hover {
+            background-color: #4CAF50;
+        }
+        button[type="submit"] {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        button[type="submit"]:hover {
+            background-color: #4CAF50;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Grocery Inventory Data Transfer</h2>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="files[]" multiple accept=".csv, .json, .xml">
+            <div class="file-list" id="fileList"></div>
+            <button type="submit">Upload</button>
+        </form>
+        <div class="note">Total selected file size should not exceed 5MB.</div>
+        <div class="total-size" id="totalSize">Total size: 0 KB</div>
+        <p id="message"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    class FileUploader {
+        constructor(maxTotalSize) {
+            this.MAX_TOTAL_SIZE = maxTotalSize;
+            this.selectedFiles = [];
+            this.init();
+        }
+
+        init() {
+            $('#fileInput').on('change', (event) => this.handleFileSelect(event));
+            $('#uploadForm').on('submit', (event) => this.handleSubmit(event));
+        }
+
+        handleFileSelect(event) {
+            const files = Array.from(event.target.files);
+            files.forEach(file => {
+                if (this.getTotalSize() + file.size <= this.MAX_TOTAL_SIZE) {
+                    this.selectedFiles.push(file);
+                } else {
+                    alert(`File ${file.name} exceeds the total size limit of 5MB.`);
+                }
+            });
+            this.renderFileList();
+            this.updateTotalSize();
+            $('#fileInput').val(''); // Clear input for re-selection
+        }
+
+        handleSubmit(event) {
+            event.preventDefault();
+            if (this.selectedFiles.length === 0) {
+                alert('No files selected.');
+                return;
+            }
+
+            const formData = new FormData();
+            this.selectedFiles.forEach(file => formData.append('files[]', file));
+
+            $.ajax({
+                url: 'data_processor.php',
+                type: 'POST',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: (response) => {
+                    console.log(response);
+                    $("#message").html(response);
+                },
+                error: (xhr, status, error) => {
+                    console.error(xhr.responseText);
+                    alert('An error occurred while uploading files.');
+                }
+            });
+        }
+
+        renderFileList() {
+            $('#fileList').empty();
+            this.selectedFiles.forEach((file, index) => {
+                const fileDiv = $(`<div>${file.name} (${(file.size / 1024).toFixed(2)} KB) <button class="remove-btn" onclick="fileUploader.removeFile(${index})">Remove</button></div>`);
+                $('#fileList').append(fileDiv);
+            });
+        }
+
+        removeFile(index) {
+            this.selectedFiles.splice(index, 1);
+            this.renderFileList();
+            this.updateTotalSize();
+        }
+
+        updateTotalSize() {
+            const totalSize = this.getTotalSize();
+            if (totalSize > 0) {
+                if (totalSize < 1024 * 1024) {
+                    $('#totalSize').text(`Total size: ${(totalSize / 1024).toFixed(2)} KB`).show();
+                } else {
+                    $('#totalSize').text(`Total size: ${(totalSize / (1024 * 1024)).toFixed(3)} MB`).show();
+                }
+            } else {
+                $('#totalSize').hide();
+            }
+        }
+
+        getTotalSize() {
+            return this.selectedFiles.reduce((acc, file) => acc + file.size, 0);
+        }
+    }
+
+    const fileUploader = new FileUploader(5 * 1024 * 1024); // 5 MB limit
+</script>
+
+</body>
+</html>
