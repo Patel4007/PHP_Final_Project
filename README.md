@@ -18,21 +18,17 @@ The Grocery Store Management System (GSMS) is a comprehensive web application de
 - **Inventory Management:**
   - Add/Edit/Delete Products
   - Stock Management
-  - Product Categorization
 
 - **Order Processing:**
   - Place Orders
   - Order Tracking
-  - Order History
 
 - **Reporting:**
   - Sales Reports
-  - Inventory Reports
 
 - **Role-Based Access Control (RBAC):**
-  - Admin: Full access
-  - Manager: Limited access
-  - Staff: Basic functionalities
+  - Staff: Full access
+  - Users: Limited access
 
 ## Requirements
 
