@@ -1,29 +1,47 @@
-Architecture 
+# Grocery Store Management System (GSMS)
 
-The following elements comprise the GSMS architecture: 
+## Description
 
-Frontend: User interface built with HTML, CSS, and JavaScript. 
+The Grocery Store Management System (GSMS) is a comprehensive web application designed to manage various aspects of grocery store operations. Built using PHP OOP principles and MySQL, GSMS provides functionalities for user management, inventory control, order processing, and reporting. The system streamlines grocery store operations and enhances overall efficiency.
 
-Backend: PHP-based server-side logic handling business operations. 
+## Version
 
-Database: MySQL database for data storage and management. 
+**Current Version:** 1.0.0
 
-The system uses a Model-View-Controller (MVC) design pattern to separate components and ensure maintainability. 
+## Features
 
- 
+- **User Management:**
+  - Registration
+  - Login/Logout
+  - Profile Management
 
-Requirements 
+- **Inventory Management:**
+  - Add/Edit/Delete Products
+  - Stock Management
+  - Product Categorization
 
-PHP (7.4 or higher) 
+- **Order Processing:**
+  - Place Orders
+  - Order Tracking
+  - Order History
 
-MySQL (5.7 or higher) 
+- **Reporting:**
+  - Sales Reports
+  - Inventory Reports
 
-Local Server (XAMPP, WAMP or MAMP) 
+- **Role-Based Access Control (RBAC):**
+  - Admin: Full access
+  - Manager: Limited access
+  - Staff: Basic functionalities
 
+## Requirements
 
+- PHP (7.4 or higher)
+- MySQL (5.7 or higher)
+- Web Server (Apache or Nginx)
+- Composer (for dependency management)
 
-Installation 
-
+## Installation
 
 Clone the Repository: 
 
